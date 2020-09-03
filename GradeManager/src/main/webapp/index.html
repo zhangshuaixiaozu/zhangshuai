@@ -1,0 +1,33 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>商品</title>
+<link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+
+<body>
+	<script src="./layui/layui.js"></script>
+	<script type="text/javascript">
+	layui.use(['element', 'form','layer', 'jquery'], function () {
+		 const $ = layui.jquery;
+		 var layer=layui.layer
+		 var form = layui.form;
+			 $.ajax({
+					url: '/classs/getClasss',
+					type: 'post',
+					data: {"cName":"软件"},
+					dataType : 'JSON',
+					success: function (data2) {
+						console.log(data2);
+						
+					}
+				});
+		 
+		 
+
+	 });
+	
+	</script>
+</body>
+</html>
