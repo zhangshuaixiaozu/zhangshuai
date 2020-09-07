@@ -1,9 +1,9 @@
 package com.GradeManager.app.bean;
 
 public class classs {
-String cId;
-String cName;
-String cSchoolName;
+private String cId;
+private String cName;
+private String cSchoolName;
 public String getcId() {
 	return cId;
 }
