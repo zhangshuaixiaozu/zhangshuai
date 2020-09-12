@@ -73,16 +73,30 @@ public class lesson {
 	public void setScoreType(String scoreType) {
 		this.scoreType = scoreType;
 	}
+	public String getSchoolYear() {
+		return schoolYear;
+	}
+	public void setSchoolYear(String schoolYear) {
+		this.schoolYear = schoolYear;
+	}
+	public String getExamTime() {
+		return examTime;
+	}
+	public void setExamTime(String examTime) {
+		this.examTime = examTime;
+	}
 	private int lessonId;
 	private String courseId;
 	private String tId;
 	private String term;
+	private String schoolYear;
+	private String examTime;
 	private String remark1;
 	private String remark2;
 	private String remark3;
-	private String examWay;//¿¼ÊÔ·½·¨£¬ÕâÊÇ·ÖÎö±íÖĞÀÏÊ¦ÊÖ¶¯ÌîµÄÄÚÈİ
-	private int examStuNum;//²Î¼Ó¿¼ÊÔµÄÈËÊı£¬ÕâÊÇ·ÖÎö±íÖĞÀÏÊ¦ÊÖ¶¯ÌîµÄÄÚÈİ
-	private int examOrigin;//ÊÔÌâÔ´£¬ÕâÊÇ·ÖÎö±íÖĞÀÏÊ¦ÊÖ¶¯ÌîµÄÄÚÈİ
+	private String examWay;//ï¿½ï¿½ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int examStuNum;//ï¿½Î¼Ó¿ï¿½ï¿½Ôµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int examOrigin;//ï¿½ï¿½ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¦ï¿½Ö¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	private int entered;
-	private String scoreType;//·ÖÊıÀà±ğ£¬1Îª°Ù·ÖÖÆ£¬0ÎªµÈ¼¶ÖÆ
+	private String scoreType;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½1Îªï¿½Ù·ï¿½ï¿½Æ£ï¿½0Îªï¿½È¼ï¿½ï¿½ï¿½
 }
