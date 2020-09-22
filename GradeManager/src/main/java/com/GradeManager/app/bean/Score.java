@@ -1,6 +1,6 @@
 package com.GradeManager.app.bean;
 
-public class score {
+public class Score {
 	private int scoreId;
 	private int lessonId;
 	private int normalScore;

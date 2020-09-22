@@ -1,6 +1,6 @@
 package com.GradeManager.app.bean;
 
-public class classs {
+public class Classs {
 private String cId;
 private String cName;
 private String cSchoolName;

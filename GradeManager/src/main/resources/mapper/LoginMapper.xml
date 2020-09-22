@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.GradeManager.app.dao.LoginMapper">
+	<select id="getClasss" resultType="com.GradeManager.app.bean.Classs">
+	SELECT * FROM classs WHERE cName LIKE '%${cName}%'
+	</select>
+	
+	<select id="getAdmin" resultType="com.GradeManager.app.bean.Admin">
+	SELECT * FROM admin WHERE adminAccount = #{username} and adminPwd = #{password}
+	</select>
+	
+	<select id="getStudent" resultType="com.GradeManager.app.bean.Student">
+	SELECT * FROM student WHERE sId = #{username} and sPwd = #{password}
+	</select>
+	
+	<select id="getTeacher" resultType="com.GradeManager.app.bean.Teacher">
+	SELECT * FROM teacher WHERE tId = #{username} and tPwd = #{password}
+	</select>
+</mapper>
+

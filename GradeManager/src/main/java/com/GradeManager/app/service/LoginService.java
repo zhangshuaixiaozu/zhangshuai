@@ -5,6 +5,6 @@ import java.util.List;
 
 import com.GradeManager.app.bean.Classs;
 
-public interface classsService {
-	List<Classs> getClasss(String cName);
+public interface LoginService {
+	int getUser(String username,String password ,String profession);
 }

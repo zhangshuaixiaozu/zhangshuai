@@ -6,11 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.GradeManager.app.bean.classs;
+import com.GradeManager.app.bean.Classs;
 
 @Repository
 @Mapper
 public interface classsMapper {
-List<classs> getClasss(@Param("cName")String cName);
+List<Classs> getClasss(@Param("cName")String cName);
 
 }

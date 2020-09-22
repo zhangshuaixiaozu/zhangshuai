@@ -1,6 +1,6 @@
 package com.GradeManager.app.bean;
 
-public class admin {
+public class Admin {
 	private String adminAccount;
 	private String adminPwd;
 	public String getAdminAccount() {

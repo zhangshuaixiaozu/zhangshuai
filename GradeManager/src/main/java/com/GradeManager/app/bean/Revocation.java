@@ -1,6 +1,6 @@
 package com.GradeManager.app.bean;
 
-public class revocation {
+public class Revocation {
 private int revocationId;
 private String revocationReason;
 private int revocationType;

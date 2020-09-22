@@ -1,0 +1,19 @@
+
+
+/* 登录页面 */
+#house-login{height: 575px; padding-top: 125px; background: url(../images/image/changandaxue.jpg)  no-repeat center center;}
+#house-login .layui-form{width: 300px; height: 390px; padding: 0px 28px 0 32px; margin:0 auto;background:rgba(255,255,255,0.4); }
+#house-login .layui-form p{font-size: 20px; line-height: 120px; text-align: center;}
+#house-login .layui-form .layui-input-block{margin-left: 0;}
+#house-login .layui-form .layui-input-block input{height: 50px; padding-left: 40px; color: #999; margin-bottom: 20px;border-color:#000000;}
+#house-login .layui-form .layui-input-block.login i{position: absolute; top: 9px; left: 10px; font-size: 30px; color: #AAA;}
+
+.transparent_class { 
+      filter:alpha(opacity=50); 
+      -moz-opacity:0.5; 
+      -khtml-opacity: 0.5; 
+      opacity: 0.5;     
+}
+#house-login .layui-form button{font-size: 14px; height: 42px; margin-top: 2px; width: 100%; background-color: #e8d770;}
+
+/

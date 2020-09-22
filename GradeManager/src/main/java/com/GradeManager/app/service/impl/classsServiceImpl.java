@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.GradeManager.app.bean.classs;
+import com.GradeManager.app.bean.Classs;
 import com.GradeManager.app.dao.classsMapper;
 import com.GradeManager.app.service.classsService;
 @Service
@@ -15,7 +15,7 @@ public class classsServiceImpl implements classsService {
 	@Autowired
 	private classsMapper cla;
 	@Override
-	public List<classs> getClasss(String cName) {
+	public List<Classs> getClasss(String cName) {
 		// TODO Auto-generated method stub
 		return cla.getClasss(cName);
 	}

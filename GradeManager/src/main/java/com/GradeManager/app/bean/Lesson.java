@@ -1,6 +1,6 @@
 package com.GradeManager.app.bean;
 
-public class lesson {
+public class Lesson {
 	public int getLessonId() {
 		return lessonId;
 	}

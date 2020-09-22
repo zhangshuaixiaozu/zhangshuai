@@ -1,6 +1,6 @@
 package com.GradeManager.app.bean;
 
-public class teacher {
+public class Teacher {
 	private String tId;
 	private String tName;
 	private String tPwd;
