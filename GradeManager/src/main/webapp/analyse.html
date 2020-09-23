@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>成绩分析</title>
+    <link rel="stylesheet" href="./layui/css/layui.css">
+</head>
+
+<body>
+    <script src="./layui/layui.js"></script>
+    <script src="./Highcharts/highcharts.js"></script>
+    <script src="./js/analyse.js"> </script>
+    <script id="demo" type="text/html">
+        <h2 align="center">长安大学{{ d.title}}学年第{{d.num}}学期考试质量分析</h1>
+            <form class="layui-form" lay-filter="analyse_form">
+            <table class="layui-table">
+                <colgroup>
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="10%">
+                    <col width="2%">                    
+                </colgroup>
+                <tbody align="center">
+                    <tr>
+                        <td>课程名称</td>
+                        <td id="cname" colspan="5">{{d.cname}}</td>
+                        <td>考试性质</td>
+                        <td colspan="2">考试</td>
+                    </tr>
+                    <tr>
+                        <td>课程学时</td>
+                        <td id="period" colspan="5">{{d.period}}</td>
+                        <td>考试方式</td>
+                        <td colspan="2" id="exam_way" >{{d.examway}}</td>
+                    </tr>
+                    <tr>
+                        <td>教学班级</td>
+                        <td id="classs" colspan="8">{{d.classs}}</td>
+                    </tr>
+                    <tr>
+                        <td>考试时间</td>
+                        <td id="exam_date">{{d.exam_date}}</td>
+                        <td>试题来源</td>
+                        <td id="origin" colspan="4">{{d.origin}}</td>
+                        <td>考试人数</td>
+                        <td id="student_amount">{{d.student_amount}}</td>
+                    </tr>
+                    <tr>
+                        <td>教师姓名</td>
+                        <td id="tname">{{d.tname}}</td>
+                        <td>教师职称</td>
+                        <td id="tposition">{{d.tposition}}</td>
+                        <td>所在院系</td>
+                        <td id="school" colspan="4">{{d.school}}</td>
+                    </tr>
+                    <tr>
+                        <td rowspan="4">考试成绩分析</td>
+                        <td colspan="2">分数段</td>
+                        <td>不及格（0~59）</td>
+                        <td>及格（60~69）</td>
+                        <td>中等（70~79）</td>
+                        <td>良好（80~89）</td>
+                        <td>优秀（90~100）</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">学生数</td>
+                        <td id="E_num">{{d.E_num}}</td>
+                        <td id="D_num">{{d.D_num}}</td>
+                        <td id="C_num">{{d.C_num}}</td>
+                        <td id="B_num">{{d.B_num}}</td>
+                        <td id="A_num">{{d.A_num}}</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">所占比例</td>
+                        <td id="E_percent">{{d.E_percent}}%</td>
+                        <td id="D_percent">{{d.D_percent}}%</td>
+                        <td id="C_percent">{{d.C_percent}}%</td>
+                        <td id="B_percent">{{d.B_percent}}%</td>
+                        <td id="A_percent">{{d.A_percent}}%</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>最高分</td>
+                        <td id="max_score">{{d.max_score}}</td>
+                        <td>最低分</td>
+                        <td id="min_score">{{d.min_score}}</td>
+                        <td>平均分</td>
+                        <td id="avg_score">{{d.avg_score}}</td>
+                        <td>标准差</td>
+                        <td id="std">{{d.std}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+      </script>
+
+    <script id="demo2" type="text/html">
+    <table class="layui-table">
+        <colgroup>
+            <col width="2%">
+            <col width="96%">
+            <col width="2%">
+        </colgroup>
+        <tbody>
+            <tr>
+                <td>
+                    试题质量分析
+                </td>
+                <td>
+                    {{d.quality_analyse}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    考试成绩分析
+                </td>
+                <td>
+                    {{d.score_analyse}}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    教学效果分析及改进措施
+                </td>
+                <td>
+                    {{d.effect_analyse}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="left">
+                    <div class="layui-row layui-col-space10">
+                        <div class="layui-col-md2">
+                            教师签字:
+                        </div>
+                        <div class="layui-col-md4">
+                        教研室（系）主任:
+                        </div>
+                        <div class="layui-col-md6">
+                      日期:
+                        </div>
+                      </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </script>
+    <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">查看分析</li>
+            <li>修改分析</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+            <!-- printTableStart -->
+            <div class="layui-row">
+            	<div class="layui-col-md8 layui-col-md-offset2">
+            		<div id="view"></div>
+            	</div>   
+            </div>
+             <div class="layui-row">
+            	<div class="layui-col-md8 layui-col-md-offset2">
+            		 <div id="container"></div>
+            	</div>   
+            </div>
+             <div class="layui-row">
+            	<div class="layui-col-md8 layui-col-md-offset2">
+            		<div id="view2"></div>
+            	</div>   
+            </div>
+             <!-- printTableEnd -->
+             <div class="layui-row">
+            	<div class="layui-col-md8 layui-col-md-offset2">
+            		<button class="layui-btn layui-btn-fluid" onclick=preview() >打印表单</button>
+            	</div>   
+            </div>             
+            </div>
+            
+            <div class="layui-tab-item">
+            <div class="layui-row">
+            	<div class="layui-col-md8 layui-col-md-offset2">
+            		 <!-- ---------------------修改表单------------------ -->
+                <form class="layui-form" lay-filter="update_analyse" action="">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">考试方式</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="examWay" required lay-verify="required" placeholder="请输入考试方式"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">试题来源</label>
+                        <div class="layui-input-inline">
+                            <select name="examOrigin" lay-verify="required">
+                                <option value="自主命题">自主命题</option>
+                                <option value="试题库">试题库</option>
+                                <option value="其它">其它</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">考试时间</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="examTime" name="examTime" required lay-verify="required"
+                                autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">试题质量分析</label>
+                        <div class="layui-input-block">
+                            <textarea name="remark1" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">考试成绩分析</label>
+                        <div class="layui-input-block">
+                            <textarea name="remark2" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">教学效果分析及改进措施</label>
+                        <div class="layui-input-block">
+                            <textarea name="remark3" placeholder="请输入内容" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            	</div>   
+            </div>
+               
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
