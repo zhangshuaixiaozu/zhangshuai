@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.GradeManager.app.dao.RevocationMapper">
+	<select id="getRevocation" resultMap="revocationInfo">
+	select * from  revocation r,lesson l,course c,teacher t  where r.revocationReply ="0" and r.removeLessonId=l.lessonId and l.tid=t.tid and l.courseId=c.courseId
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*)
+		from
+		revocation WHERE revocationReply ="0"
+	</select>
+	
+	<select id="getRevocation1" resultMap="revocationInfo">
+	select * from  revocation r,lesson l,course c,teacher t  where r.revocationReply !="0" and r.removeLessonId=l.lessonId and l.tid=t.tid and l.courseId=c.courseId
+	</select>
+	
+	<select id="getCount1" resultType="int">
+		select count(*)
+		from
+		revocation WHERE revocationReply !="0"
+	</select>
+	<select id="getRevocationReason" resultType="com.GradeManager.app.bean.Revocation">
+		select * from revocation
+		where revocationId=#{revocationId}	
+	</select>
+	
+	<update id="updateRevocation">
+		update revocation set
+		revocationReply=#{revocationReply}
+		where revocationId=#{revocationId}
+	</update>
+	
+	
+	<resultMap type="com.GradeManager.app.bean.Revocation" id="revocationInfo">
+	<id property="revocationId" column="revocationId"/>
+	<result property="revocationReason" column="revocationReason"/>
+	<result property="revocationType" column="revocationType"/>
+	<result property="removeLessonId" column="removeLessonId"/>
+	<result property="revocationReply" column="revocationReply"/>
+	<association property="lesson" javaType="com.GradeManager.app.bean.Lesson">
+	<!-- <resultMap type="com.GradeManager.app.bean.lesson" id="lessonInfo"> -->
+	<id property="lessonId" column="lessonId"/>
+	<result property="schoolYear" column="schoolYear"/>
+	<result property="term" column="term"/>
+	<result property="remark1" column="remark1"/>
+	<result property="remark2" column="remark2"/>
+	<result property="remark3" column="remark3"/>
+	<result property="examTime" column="examTime"/>
+	<result property="examWay" column="examWay"/>
+	<result property="examStuNum" column="examStuNum"/>
+	<result property="examOrigin" column="examOrigin"/>
+	<result property="scoreType" column="scoreType"/>
+	<association property="Teacher" javaType="com.GradeManager.app.bean.Teacher">
+	<id property="tId" column="tId"/>
+	<result  property="tName" column="tName"/>
+	<result  property="tSchoolName" column="tSchoolName"/>
+	</association>
+	<association property="Course" javaType="com.GradeManager.app.bean.Course">
+	<id property="courseId" column="courseId"/>
+	<result property="courseName" column="courseName"/>
+	<result property="credit" column="credit"/>
+	</association>
+	</association>
+	</resultMap>
+</mapper>

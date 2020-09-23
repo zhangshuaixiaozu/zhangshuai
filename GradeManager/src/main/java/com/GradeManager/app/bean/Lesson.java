@@ -85,6 +85,20 @@ public class Lesson {
 	public void setExamTime(String examTime) {
 		this.examTime = examTime;
 	}
+	public Teacher getTeacher() {
+		return Teacher;
+	}
+	public void setTeacher(Teacher teacher) {
+		Teacher = teacher;
+	}
+	public Course getCourse() {
+		return Course;
+	}
+	public void setCourse(Course course) {
+		Course = course;
+	}
+	private Teacher Teacher;
+	private Course Course;
 	private int lessonId;
 	private String courseId;
 	private String tId;
@@ -94,9 +108,9 @@ public class Lesson {
 	private String remark1;
 	private String remark2;
 	private String remark3;
-	private String examWay;//���Է��������Ƿ���������ʦ�ֶ��������
-	private int examStuNum;//�μӿ��Ե����������Ƿ���������ʦ�ֶ��������
-	private int examOrigin;//����Դ�����Ƿ���������ʦ�ֶ��������
+	private String examWay;
+	private int examStuNum;
+	private int examOrigin;
 	private int entered;
-	private String scoreType;//�������1Ϊ�ٷ��ƣ�0Ϊ�ȼ���
+	private String scoreType;
 }

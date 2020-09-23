@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.GradeManager.app.dao.classsMapper">
+<mapper namespace="com.GradeManager.app.dao.ClasssMapper">
 	<select id="getClasss" resultType="com.GradeManager.app.bean.Classs">
 	SELECT * FROM classs WHERE cName LIKE '%${cName}%'
 	</select>

@@ -7,13 +7,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.GradeManager.app.bean.Classs;
-import com.GradeManager.app.dao.classsMapper;
-import com.GradeManager.app.service.classsService;
+import com.GradeManager.app.dao.ClasssMapper;
+import com.GradeManager.app.service.ClasssService;
 @Service
 @Transactional
-public class classsServiceImpl implements classsService {
+public class ClasssServiceImpl implements ClasssService {
 	@Autowired
-	private classsMapper cla;
+	private ClasssMapper cla;
 	@Override
 	public List<Classs> getClasss(String cName) {
 		// TODO Auto-generated method stub

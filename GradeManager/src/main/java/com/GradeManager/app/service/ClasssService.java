@@ -5,6 +5,6 @@ import java.util.List;
 
 import com.GradeManager.app.bean.Classs;
 
-public interface classsService {
+public interface ClasssService {
 	List<Classs> getClasss(String cName);
 }

@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.GradeManager.app.bean.Classs;
-import com.GradeManager.app.service.classsService;
+import com.GradeManager.app.service.ClasssService;
 
 @RestController
-public class classsController {
+public class ClasssController {
 	@Autowired
-	private classsService cla;
-	@RequestMapping("classs/getClasss")
+	private ClasssService cla;
+	@RequestMapping("Classs/getClasss")
 	public List<Classs> getClasss(String cName)
 	{
 		System.out.print("----------------------------"+cName);

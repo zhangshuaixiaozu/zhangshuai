@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.GradeManager.app.dao.LessonMapper">
+
+<update id="setLessonEntered">
+	UPDATE lesson SET  entered=0	
+	WHERE  lessonId = #{lessonId}
+</update>
+
+	<update id="updateLesson">
+	UPDATE lesson 
+	SET examWay = #{examWay}#
+	,
+	examOrigin = #{examOrigin}#
+	,
+	examTime = #{examTime}#
+	,
+	remark1 = #{remark1}#
+	,
+	remark2 = #{remark2}#
+	,
+	remark3 = #{remark3}#
+
+	WHERE
+	lessonId = #{lessonId}#
+	</update>
+	<select id="getLesson" resultMap="lessonInfo">
+	SELECT
+	* 
+	FROM
+	lesson,
+	course,
+	teacher 
+	WHERE
+	course.courseId = lesson.courseId 
+	AND teacher.tId = lesson.tId
+	AND lessonId=#{lessonId}#
+	</select>
+	<resultMap type="com.GradeManager.app.bean.Lesson" id="lessonInfo">
+	<id property="lessonId" column="lessonId"/>
+	<result property="schoolYear" column="schoolYear"/>
+	<result property="term" column="term"/>
+	<result property="remark1" column="remark1"/>
+	<result property="remark2" column="remark2"/>
+	<result property="remark3" column="remark3"/>
+	<result property="examTime" column="examTime"/>
+	<result property="examWay" column="examWay"/>
+	<result property="examStuNum" column="examStuNum"/>
+	<result property="examOrigin" column="examOrigin"/>
+	<result property="scoreType" column="scoreType"/>
+	
+	<association property="Teacher" javaType="com.GradeManager.app.bean.Teacher">
+	<id property="tId" column="tId"/>
+	<result  property="tName" column="tName"/>
+	<result  property="tSchoolName" column="tSchoolName"/>
+	</association>
+	<association property="Course" javaType="com.GradeManager.app.bean.Course">
+	<id property="courseId" column="courseId"/>
+	<result property="courseName" column="courseName"/>
+	<result property="credit" column="credit"/>
+	</association>
+	</resultMap>
+</mapper>
