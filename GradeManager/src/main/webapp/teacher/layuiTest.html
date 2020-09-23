@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>前端分页</title>
+    <script type="text/javascript" src="layui/layui.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css" />
+</head>
+<body>
+<table class="layui-table" id="testTable" lay-filter="testTable"></table>
+</body>
+<script type="text/javascript">
+    layui.use(["table","jquery"],function () {
+        var data = [
+            {
+                key: 1,
+                value: "aaaa",
+            },
+            {
+                key: 100,
+                value: "bbbb",
+            },
+            {
+                key: 3,
+                value: "cccc",
+            },
+            {
+                key: 4,
+                value: "dddd",
+            },
+            {
+                key: 5,
+                value: "eeee",
+            },
+            {
+                key: 6,
+                value: "ffff",
+            },
+            {
+                key: 7,
+                value: "gggg",
+            },
+            {
+                key: 8,
+                value: "hhhh",
+            },
+            {
+                key: 9,
+                value: "iiii",
+            },
+            {
+                key: 10,
+                value: "jjjj",
+            },
+            {
+                key: 11,
+                value: "kkkk",
+            },
+            {
+                key: 12,
+                value: "llll",
+            },
+            {
+                key: 13,
+                value: "mmmm",
+            },
+            {
+                key: 14,
+                value: "nnnn",
+            },
+            {
+                key: 15,
+                value: "oooo",
+            },
+            {
+                key: 16,
+                value: "pppp",
+            },
+            {
+                key: 17,
+                value: "qqqq",
+            },
+            {
+                key: 18,
+                value: "rrrr",
+            },
+            {
+                key: 19,
+                value: "ssss",
+            },
+            {
+                key: 20,
+                value: "tttt",
+            },
+            {
+                key: 21,
+                value: "uuuu",
+            },
+            {
+                key: 22,
+                value: "vvvv",
+            },
+            {
+                key: 23,
+                value: "wwww",
+            },
+            {
+                key: 24,
+                value: "xxxx",
+            },
+            {
+                key: 25,
+                value: "yyyy",
+            },
+            {
+                key: 26,
+                value: "zzzz",
+            },
+        ];
+        let newData = JSON.parse(JSON.stringify(data)); //layui会在原始数组上添东西，为了不改变原始数组，拷贝对象
+        var $ = layui.jquery;
+        var table = layui.table;
+        var testTable = table.render({
+            elem: "#testTable",
+            autoSort: false,
+            page: true,
+            cols: [[
+                {field: "key", title: "键", sort: true,},
+                {field: "value", title: "值",},
+            ]],
+            data: newData,
+        });
+        //前端排序
+        table.on("sort(testTable)", function (obj) {
+            if (obj.type === "desc"){ //降序
+                let newData = JSON.parse(JSON.stringify(data)); //为了不改变原始排序，排序时拷贝对象
+                newData.sort(function (data1,data2) { //data1和data2是冒泡排序的左右值
+                    return data2.key-data1.key;
+                });
+                testTable.reload({
+                    data: newData
+                })
+            }else if (obj.type === "asc"){ //升序
+                let newData = JSON.parse(JSON.stringify(data)); //为了不改变原始排序，排序时拷贝对象
+                newData.sort(function (data1,data2) { //data1和data2是冒泡排序的左右值
+                    return data1.key-data2.key;
+                });
+                testTable.reload({
+                    data: newData
+                })
+            }else if (obj.type === null) { //原始顺序
+                let newData = JSON.parse(JSON.stringify(data));
+                testTable.reload({
+                    data: newData
+                });
+            }
+        });
+    })
+</script>
+</html>
