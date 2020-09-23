@@ -41,7 +41,7 @@ layui.use(['laytpl','layer', 'form', 'laydate', 'element','jquery'], function ()
 		            text: ' '
 		        },
 		        xAxis: {
-		            categories: ['不及格', '及格', '中等', '良好', '优秀']
+		            categories: ['优秀','良好','中等','及格','不及格']
 		        },
 		        yAxis: {
 		            title: {
