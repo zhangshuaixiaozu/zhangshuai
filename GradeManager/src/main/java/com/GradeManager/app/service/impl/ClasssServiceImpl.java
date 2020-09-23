@@ -14,10 +14,10 @@ import com.GradeManager.app.service.ClasssService;
 public class ClasssServiceImpl implements ClasssService {
 	@Autowired
 	private ClasssMapper cla;
-	@Override
-	public List<Classs> getClasss(String cName) {
+	public List<Classs> getClasss(String lessonId) {
 		// TODO Auto-generated method stub
-		return cla.getClasss(cName);
+		return cla.getClasss(lessonId);
 	}
+
 
 }

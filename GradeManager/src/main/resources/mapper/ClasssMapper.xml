@@ -5,6 +5,14 @@
 
 <mapper namespace="com.GradeManager.app.dao.ClasssMapper">
 	<select id="getClasss" resultType="com.GradeManager.app.bean.Classs">
-	SELECT * FROM classs WHERE cName LIKE '%${cName}%'
+	SELECT
+	DISTINCT(student.cId) 
+	FROM
+	score,
+	student,
+  	classs	
+	WHERE
+	score.studentId =student.sId 
+	AND lessonId=#{lessonId}#
 	</select>
 </mapper>

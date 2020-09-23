@@ -6,5 +6,5 @@ import java.util.List;
 import com.GradeManager.app.bean.Classs;
 
 public interface ClasssService {
-	List<Classs> getClasss(String cName);
+	List<Classs> getClasss(String lessonId);
 }

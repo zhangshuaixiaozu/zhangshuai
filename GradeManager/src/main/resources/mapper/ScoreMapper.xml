@@ -12,4 +12,7 @@
 	usualScore=-1	
 	WHERE  lessonId = #{lessonId}
 	</update>
+	<select id="getLessonScore" resultType="com.GradeManager.app.bean.Score">
+	SELECT * FROM score WHERE lessonId=#{lessonId}#
+	</select>
 </mapper>

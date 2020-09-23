@@ -11,6 +11,6 @@ import com.GradeManager.app.bean.Classs;
 @Repository
 @Mapper
 public interface ClasssMapper {
-List<Classs> getClasss(@Param("cName")String cName);
+List<Classs> getClasss(@Param("lessonId")String lessonId);
 
 }
