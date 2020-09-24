@@ -1,0 +1,37 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>教师查看界面</title>
+<link rel="stylesheet" href="../layui/css/layui.css">
+</head>
+
+<body>
+
+
+
+
+	<div class="demoTable">
+		搜索学生姓名
+		<div class="layui-inline">
+			<input class="layui-input" name="sName" id="sName" autocomplete="off">
+		</div>
+		<button id="search-btn" class="layui-btn">
+			<i class="layui-icon layui-icon-search"></i> 查询
+		</button>
+		<button id="reset-btn" class="layui-btn">
+			重置
+		</button>
+	
+	</div>
+
+
+	<table id="viewTable" class="layui-table"></table>
+
+
+
+	
+	<script type="text/javascript" src="../layui/layui.js"></script>
+	<script type="text/javascript" src="../js/teacherView.js"></script>
+</body>
+</html>

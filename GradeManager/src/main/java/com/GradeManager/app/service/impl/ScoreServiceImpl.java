@@ -1,5 +1,6 @@
 package com.GradeManager.app.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,17 @@ public class ScoreServiceImpl implements ScoreService {
 		return sco.getLessonScore(lessonId);
 	}
 
+	
+	
+	@Override
+	public int getCountScore() {
+		// TODO Auto-generated method stub
+		return sco.getCountScore();
+	}
+
+	@Override
+	public List<HashMap<String, Object>> listScore(int lessonId) {
+		// TODO Auto-generated method stub
+		return sco.listScore(lessonId);
+	}
 }

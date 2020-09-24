@@ -15,4 +15,23 @@
 	<select id="getLessonScore" resultType="com.GradeManager.app.bean.Score">
 	SELECT * FROM score WHERE lessonId=#{lessonId}#
 	</select>
+	
+	
+	<sql id="commsql">
+	select * from score
+	</sql>
+	<select id="getCountScore" resultType="int">
+	select count(scoreId) from score
+	</select>
+
+	<select id="listScore" resultType="java.util.HashMap">
+    SELECT
+	* 
+	from score
+	left join lesson on lesson.lessonId=score.lessonId
+	left join student on student.sId = score.studentId
+	left join course on course.courseId=lesson.courseId
+	where lesson.lessonId = #{lessonId}
+   
+</select>
 </mapper>

@@ -2,6 +2,7 @@ package com.GradeManager.app.dao;
 
 
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -16,4 +17,8 @@ public interface ScoreMapper {
 int delScore(@Param("lessonId")int lessonId);
 
 List<Score> getLessonScore(@Param("lessonId")int lessonId);
+
+int getCountScore();
+
+List<HashMap<String, Object>> listScore(@Param("lessonId")int lessonId);
 }

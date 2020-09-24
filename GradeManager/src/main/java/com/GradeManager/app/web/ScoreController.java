@@ -128,4 +128,11 @@ public class ScoreController {
 	    res.put("remark3",_lesson.getRemark3());
 		return res;
 	}
+	
+	@RequestMapping("score/listScore")
+	public List<HashMap<String, Object>> listScore(int lessonId){
+		
+		return sco.listScore(lessonId);
+	
+	}
 }
