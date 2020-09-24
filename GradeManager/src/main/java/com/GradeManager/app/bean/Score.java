@@ -6,7 +6,10 @@ public class Score {
 	private int normalScore;
 	private int supplementScore;
 	private int clearScore;
+	private int usualScore;    // 平时成绩
 	private String studentId;
+	
+	
 	public int getScoreId() {
 		return scoreId;
 	}

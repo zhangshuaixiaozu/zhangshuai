@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>成绩录入</title>
+
+<link rel="stylesheet" href="layui/css/layui.css">
+<script src="layui/layui.js"></script>
+<script src="js/clearInput.js"></script>
+
+<style type="text/css">
+     /* 防止下拉框的下拉列表被隐藏---必须设置--- */
+/*       .layui-table-cell { */
+/*           overflow: visible !important; */
+/*       } */
+      /* 使得下拉框与单元格刚好合适 */
+      td .layui-form-select{
+          margin-top: -10px;
+          margin-left: -15px;
+          margin-right: -15px;
+      }  
+      .layui-table-cell, .layui-table-tool-panel li{
+	overflow:visible !important;
+ }
+</style>
+
+</head>
+<body>
+
+<script type="text/html" id="toolbarDemo">
+  <div class="layui-btn-container" >
+    <button class="layui-btn layui-btn-sm" lay-event="temporary" style="margin-left:110px">暂存</button>
+    <button class="layui-btn layui-btn-sm" lay-event="save">提交</button>
+  </div>
+</script>
+    
+    <script type="text/html" id="selectClearScore">  
+      <div class="layui-form">
+    	<select id='clearScore' name='clearScore'  lay-verify='' lay-search='' lay-filter='_selectClearScore' >
+            <option value=""></option>
+            <option value="A" {{# if(d.clearScore>=90 && d.clearScore<100|| d.clearScore=="A"){  }} selected = "selected" {{# } }}>A</option>
+            <option value="B" {{# if(d.clearScore>=80 && d.clearScore<90 || d.clearScore=="B"){  }} selected = "selected" {{# } }}>B</option>
+            <option value="C" {{# if(d.clearScore>=70 && d.clearScore<80 || d.clearScore=="C"){  }} selected = "selected" {{# } }}>C</option>
+            <option value="D" {{# if(d.clearScore>=60 && d.clearScore<70 || d.clearScore=="D"){  }} selected = "selected" {{# } }}>D</option>
+            <option value="E" {{# if(d.clearScore<60  && d.clearScore>=0 || d.clearScore=="E"){  }} selected = "selected" {{# } }}>E</option>
+        </select>
+       </div>
+    </script>
+
+    <div style="text-align: center;margin-top: 20px;margin-bottom: 20px">
+        <h1>清考成绩录入</h1>
+    </div>
+	<!--  成绩录入表格 -->
+	<div style="text-align: center;">
+        <div class="layui-inline">
+            <table id="GradeInput" lay-filter="GradeInput" style="margin: 0 auto;"></table>
+        </div>
+    </div>
+
+</body>
+</html>
