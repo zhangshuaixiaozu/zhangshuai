@@ -34,7 +34,7 @@ layui.use(["jquery","table","element","layer"],function () {
         console.info(event);
 
         if(event === "check"){//查看
-        	window.open("./teacherView.html");
+        	window.open(`./teacherView.html?lessonId=${data.lessonId}`);
         }else if(event === "input1"){//正考录入
             if (data.entered === 0){
                 window.open("");
