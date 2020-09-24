@@ -34,18 +34,22 @@ layui.use(["jquery","table","element","layer"],function () {
         console.info(event);
 
         if(event === "check"){//查看
-            window.location.href = "";
+            // window.location.href = "";
         }else if(event === "input1"){//正考录入
-            window.location.href = "";
+            window.open("");
         }else if(event === "input2"){//补考录入
-            window.location.href = "";
+            window.open("");
         }else if(event === "input3"){//清考录入
-            window.location.href = "";
+            window.open("");
         }else if(event === "analyse"){//成绩分析
-            window.location.href = "";
+            window.open(`../analyse.html?lessonId=${data.lessonId}`);
         }else if(event === "revocation"){//成绩撤回
             layer.confirm("<textarea placeholder='撤销理由' id='textarea1' style='width: 100%; height: 100%'></textarea>",{
                 btn: ['撤回','删除','取消'] //按钮
+            }, function(){
+                layer.msg($("#textarea1").val());
+            }, function(){
+                layer.msg($("#textarea1").val());
             }, function(){
                 layer.msg($("#textarea1").val());
             });
