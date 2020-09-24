@@ -7,5 +7,10 @@
 	<select id="getLessons" resultType="java.util.HashMap">
 	SELECT * FROM lesson LEFT JOIN course ON lesson.courseId = course.courseId WHERE tId = #{tId}
 	</select>
-	
+	<insert id="revocation">
+	INSERT INTO revocation SET revocationReason = #{reason}, revocationType=#{type}, removeLessonId=#{lessonId}
+	</insert>
+	<select id="getLessonMessage" resultType="java.util.HashMap">
+	SELECT * FROM revocation WHERE removeLessonId = #{lessonId}
+	</select>
 </mapper>

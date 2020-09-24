@@ -1,7 +1,9 @@
 package com.GradeManager.app.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
@@ -28,5 +30,26 @@ public class TeacherIndexServiceImpl implements TeacherIndexService {
 		session.setAttribute("user", teacher);
 		Teacher newTeacher = (Teacher)session.getAttribute("user");
 		return teacherIndexMapper.getLessons(newTeacher.gettId());
+	}
+	@Override
+	public boolean revocation(String reason, int type, String lessonId){
+		return teacherIndexMapper.revocation(reason, type, lessonId);
+	}
+	@Override
+	public List<HashMap<String, Object>> getMessageList() {
+		// TODO Auto-generated method stub
+		Teacher teacher = new Teacher();
+		teacher.settId("2001001");
+		session.setAttribute("user", teacher);
+		Teacher newTeacher = (Teacher)session.getAttribute("user");
+		List<HashMap<String, Object>> lessons = teacherIndexMapper.getLessons(newTeacher.gettId());
+		List<HashMap<String, Object>> ret = new ArrayList<HashMap<String,Object>>();
+		for(HashMap<String, Object> lesson : lessons){
+			List<HashMap<String, Object>> messages = teacherIndexMapper.getLessonMessage(String.valueOf((Integer) lesson.get("lessonId")));
+			for(HashMap<String, Object> message : messages){
+				ret.add(message);
+			}
+		}
+		return ret;
 	}
 }

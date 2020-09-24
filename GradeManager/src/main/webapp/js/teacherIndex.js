@@ -36,24 +36,68 @@ layui.use(["jquery","table","element","layer"],function () {
         if(event === "check"){//查看
             // window.location.href = "";
         }else if(event === "input1"){//正考录入
-            window.open("");
+            if (data.entered === 0){
+                window.open("");
+            }else{
+                layer.msg("已提交，若需更改，请先撤销");
+            }
         }else if(event === "input2"){//补考录入
-            window.open("");
+            if (data.entered === 0){
+                window.open("");
+            }else{
+                layer.msg("已提交，若需更改，请先撤销");
+            }
         }else if(event === "input3"){//清考录入
-            window.open("");
+            if (data.entered === 0){
+                window.open("");
+            }else{
+                layer.msg("已提交，若需更改，请先撤销");
+            }
         }else if(event === "analyse"){//成绩分析
-            window.open(`../analyse.html?lessonId=${data.lessonId}`);
+            if (data.entered === 1){
+                window.open(`../analyse.html?lessonId=${data.lessonId}`);
+            }else{
+                layer.msg("成绩尚未提交");
+            }
         }else if(event === "revocation"){//成绩撤回
-            layer.confirm("<textarea placeholder='撤销理由' id='textarea1' style='width: 100%; height: 100%'></textarea>",{
-                btn: ['撤回','删除','取消'] //按钮
-            }, function(){
-                layer.msg($("#textarea1").val());
-            }, function(){
-                layer.msg($("#textarea1").val());
-            }, function(){
-                layer.msg($("#textarea1").val());
-            });
+            if (data.entered === 1){
+                layer.confirm("<textarea placeholder='撤销理由' id='textarea1' style='width: 100%; height: 93%'></textarea>",{
+                    btn: ['撤回','删除','取消'], //按钮
+                    area: ['420px', '300px'],
+                }, function(){
+                    $.ajax({
+                        url: "/teacher/revocation",
+                        type: "get",
+                        data: {
+                            reason: $("#textarea1").val(),
+                            type: 0,
+                            lessonId: data.lessonId,
+                        },
+                        success: function () {
+                            layer.msg("成功提交撤销申请");
+                        }
+                    })
+                }, function(){
+                    $.ajax({
+                        url: "/teacher/revocation",
+                        type: "get",
+                        data: {
+                            reason: $("#textarea1").val(),
+                            type: 1,
+                            lessonId: data.lessonId,
+                        },
+                        success: function () {
+                            layer.msg("成功提交撤销申请");
+                        }
+                    })
+                }, function(){
+
+                });
+            }else{
+                layer.msg("成绩尚未提交");
+            }
+
         }
-            });
+    });
     console.info(Number("123")+123);
 });

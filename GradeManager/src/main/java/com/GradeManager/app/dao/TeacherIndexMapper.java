@@ -12,4 +12,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface TeacherIndexMapper {
 	List<HashMap<String, Object>> getLessons(@Param("tId")String tId);
+	boolean revocation(@Param("reason")String reason, @Param("type")int type, @Param("lessonId")String lessonId);
+	List<HashMap<String, Object>> getLessonMessage(@Param("lessonId")String lessonId);
 }
