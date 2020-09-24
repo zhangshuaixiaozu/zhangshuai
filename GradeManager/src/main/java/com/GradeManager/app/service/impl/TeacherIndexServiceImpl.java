@@ -25,9 +25,9 @@ public class TeacherIndexServiceImpl implements TeacherIndexService {
 	@Override
 	public List<HashMap<String, Object>> getLessonList() {
 		// TODO Auto-generated method stub
-		Teacher teacher = new Teacher();
-		teacher.settId("2001001");
-		session.setAttribute("user", teacher);
+//		Teacher teacher = new Teacher();
+//		teacher.settId("2001001");
+//		session.setAttribute("user", teacher);
 		Teacher newTeacher = (Teacher)session.getAttribute("user");
 		return teacherIndexMapper.getLessons(newTeacher.gettId());
 	}
@@ -38,9 +38,9 @@ public class TeacherIndexServiceImpl implements TeacherIndexService {
 	@Override
 	public List<HashMap<String, Object>> getMessageList() {
 		// TODO Auto-generated method stub
-		Teacher teacher = new Teacher();
-		teacher.settId("2001001");
-		session.setAttribute("user", teacher);
+//		Teacher teacher = new Teacher();
+//		teacher.settId("2001001");
+//		session.setAttribute("user", teacher);
 		Teacher newTeacher = (Teacher)session.getAttribute("user");
 		
 		//根据tID查出lesson
