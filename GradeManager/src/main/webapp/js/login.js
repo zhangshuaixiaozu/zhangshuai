@@ -18,9 +18,9 @@ layui.use([ 'layer', 'form', 'jquery' ], function() {
 						{window.location.href="./jsp/student.jsp";}
 					else if(flag=="老师登陆成功"){
 						
-					window.location.href="./jsp/laoshi.jsp";}
+					window.location.href="./teacher/index.html";}
 					else if(flag=="管理员登陆成功"){
-								window.location.href="index.jsp";
+								window.location.href="admin.html";
 				}
 					else if(flag=="登录失败"){ 
 						  layer.msg('登录失败');}
