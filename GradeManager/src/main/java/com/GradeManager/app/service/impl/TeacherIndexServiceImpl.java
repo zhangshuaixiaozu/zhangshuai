@@ -42,12 +42,17 @@ public class TeacherIndexServiceImpl implements TeacherIndexService {
 		teacher.settId("2001001");
 		session.setAttribute("user", teacher);
 		Teacher newTeacher = (Teacher)session.getAttribute("user");
+		
+		//根据tID查出lesson
 		List<HashMap<String, Object>> lessons = teacherIndexMapper.getLessons(newTeacher.gettId());
 		List<HashMap<String, Object>> ret = new ArrayList<HashMap<String,Object>>();
+		
+		//根据lessonId查撤销表
 		for(HashMap<String, Object> lesson : lessons){
 			List<HashMap<String, Object>> messages = teacherIndexMapper.getLessonMessage(String.valueOf((Integer) lesson.get("lessonId")));
 			for(HashMap<String, Object> message : messages){
 				ret.add(message);
+				message.put("courseId", lesson.get("courseName"));
 			}
 		}
 		return ret;
