@@ -88,7 +88,7 @@ layui.use(["jquery","element","laypage","layer"],function(){
 				var txt;
 				var reasonTxT;
 				$("#list1").html("")//清空原内容
-				res.forEach(function(item){//显示每个商品					
+				res.forEach(function(item){					
 					if(item.revocationReason.length>44)
 					{
 						reasonTxT=item.revocationReason.substring(0,44)+"<a class='reasonDetail' style='color:blue' id="+item.revocationId+">...详情></a>";
@@ -142,7 +142,7 @@ layui.use(["jquery","element","laypage","layer"],function(){
 						    content:reason,
 						    btn: ['确定'], //按钮组
 						    scrollbar: false ,//屏蔽浏览器滚动条
-						    yes: function(index){//layer.msg('yes');    //点击确定回调
+						    yes: function(index){
 						        layer.close(index);
 						        showToast();
 						    }						    

@@ -52,7 +52,7 @@ public class TeacherIndexServiceImpl implements TeacherIndexService {
 			List<HashMap<String, Object>> messages = teacherIndexMapper.getLessonMessage(String.valueOf((Integer) lesson.get("lessonId")));
 			for(HashMap<String, Object> message : messages){
 				ret.add(message);
-				message.put("courseId", lesson.get("courseName"));
+				message.put("courseName", lesson.get("courseName"));
 			}
 		}
 		return ret;
