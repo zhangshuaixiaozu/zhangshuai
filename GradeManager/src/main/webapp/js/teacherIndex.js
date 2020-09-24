@@ -36,23 +36,11 @@ layui.use(["jquery","table","element","layer"],function () {
         if(event === "check"){//查看
         	window.open(`./teacherView.html?lessonId=${data.lessonId}`);
         }else if(event === "input1"){//正考录入
-            if (data.entered === 0){
-                window.open("");
-            }else{
-                layer.msg("已提交，若需更改，请先撤销");
-            }
+                window.open(`../normalInput.html?lessonId=${data.lessonId}`);
         }else if(event === "input2"){//补考录入
-            if (data.entered === 0){
-                window.open("");
-            }else{
-                layer.msg("已提交，若需更改，请先撤销");
-            }
+                window.open(`../supplementInput.html?lessonId=${data.lessonId}`);
         }else if(event === "input3"){//清考录入
-            if (data.entered === 0){
-                window.open("");
-            }else{
-                layer.msg("已提交，若需更改，请先撤销");
-            }
+                window.open(`../clearInput.html?lessonId=${data.lessonId}`);
         }else if(event === "analyse"){//成绩分析
             if (data.entered === 1){
                 window.open(`../analyse.html?lessonId=${data.lessonId}`);

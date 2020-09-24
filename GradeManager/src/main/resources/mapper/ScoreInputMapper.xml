@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.GradeManager.app.dao.ScoreInputMapper">
+
+	<!-- 查询成绩录入 -->
+	<select id="getExamInfo" resultType="java.util.HashMap">
+		select entered,scoreType,usualProportion
+		from lesson
+		where lessonId = #{lessonId}
+	</select>
+	<!-- 查询某课程学生人数 -->
+	<select id="getCountStudent" resultType="int">
+		select count(*) from
+		score
+		where lessonId=#{lessonId}
+	</select>
+	<!-- 查询某课程所有学生成绩 -->
+	<select id="getScoreInfo" resultType="java.util.HashMap">
+		select
+		scoreId,studentId,sName, usualScore,
+		normalScore,supplementScore,clearScore
+		from score left join student
+		on
+		score.studentId = student.sId
+
+		where lessonId = #{lessonId}
+	</select>
+
+	<!-- 更新某课程学生成绩-录入成绩 -->
+	<update id="updateScore" parameterType="java.util.List">
+
+		<foreach open="" close="" separator=";" collection="list"
+			item="item" index="index">
+			update score
+			<set>
+			  <if test="item.usualScore!=null">
+			    usualScore = #{item.usualScore},
+			  </if>
+			  <if test="item.normalScore!=null">
+			    normalScore = #{item.normalScore},
+			  </if>
+			  <if test="item.supplementScore!=null">
+			    supplementScore = #{item.supplementScore},
+			  </if>
+			  <if test="item.clearScore!=null">
+			    clearScore = #{item.clearScore}
+			  </if>	
+			</set>
+			<where>
+				<if test="item.lessonId!=null">
+					lessonId = #{item.lessonId}
+				</if>
+				<if test="item.studentId!=null">
+					and studentId = #{item.studentId}
+				</if>
+			</where>
+		</foreach>
+	</update>
+	
+	<!-- 更新某课程学生成绩-录入成绩 -->
+	<update id="updateInputStatus">
+	    update lesson set entered = #{entered}
+	    where lessonId = #{lessonId}
+			
+	</update>
+
+</mapper>
