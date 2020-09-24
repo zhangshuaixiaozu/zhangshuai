@@ -15,7 +15,7 @@ layui.use([ 'layer', 'form', 'jquery' ], function() {
 					console.log(flag);
 					
 					if(flag == "学生登陆成功")
-						{window.location.href="./jsp/xuesheng.jsp";}
+						{window.location.href="./jsp/student.jsp";}
 					else if(flag=="老师登陆成功"){
 						
 					window.location.href="./jsp/laoshi.jsp";}
