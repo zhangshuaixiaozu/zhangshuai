@@ -30,7 +30,18 @@ public class ScoreController {
 	private ClasssService cl;
 	@Autowired
 	private LessonService les;
-	@RequestMapping("lesson/updateLesson")
+	@RequestMapping("lesson/updateLesson")//修改成绩分析
+	/**
+	 * 
+	 * @param lessonId：授课号
+	 * @param examOrigin：试题来源
+	 * @param examTime：考试时间
+	 * @param examWay：考试方式
+	 * @param remark1：分析1
+	 * @param remark2：分析2
+	 * @param remark3：分析3
+	 * @return
+	 */
 	public boolean updateLesson(int lessonId,String examOrigin,String examTime,String examWay,String remark1,String remark2,String remark3)
 	{   
 		int eo=0;
@@ -42,14 +53,19 @@ public class ScoreController {
 	}
 	
 	@RequestMapping("lesson/getLessonScore")
+	/**
+	 * 处理所有读出的成绩并进行统计分析，是生成前端重要数据的主要算法
+	 * @param lessonId：授课号
+	 * @return
+	 */
 	public Map getLessonScore(int lessonId)
 	{
 		System.out.print("----------------------------"+lessonId);
 		Map res = new HashMap<>();
-		List<Score> scorelist=sco.getLessonScore(lessonId);
-		List<Classs> classsList=cl.getClasss(String.format("%d", lessonId));
-		Lesson _lesson=les.getLesson(lessonId);
-		///////数据处理
+		List<Score> scorelist=sco.getLessonScore(lessonId);//获取该课程的所有学生成绩
+		List<Classs> classsList=cl.getClasss(String.format("%d", lessonId));//获取该课程的所有对应班级
+		Lesson _lesson=les.getLesson(lessonId);//获取该课程的相关信息（包括可能已经填写的分析）
+		///////对成绩进行统计分析
 		int A=0,B=0,C=0,D=0,E=0,temp;
 		float max=0,min=100,sum=0,avg=0;
 		for(int i=0;i<scorelist.size();i++)
@@ -64,29 +80,32 @@ public class ScoreController {
 			else if(temp<90) B++;
 			else A++;
 		}
-		res.put("title",_lesson.getSchoolYear());
-		res.put("num", _lesson.getTerm());
-		res.put("cname", _lesson.getCourse().getCourseName());
-		res.put("period", 36);
-		res.put("examway", _lesson.getExamWay());
+		res.put("title",_lesson.getSchoolYear());//学年
+		res.put("num", _lesson.getTerm());//学期
+		res.put("cname", _lesson.getCourse().getCourseName());//课程名
+		res.put("period", 36);//课程学时
+		res.put("examway", _lesson.getExamWay());//考试方式
 		String cla="";
 		for(int i=0;i<classsList.size()-1;i++)
 		{
 			cla+=classsList.get(i).getcId()+",";
 		}
 		cla+=classsList.get(classsList.size()-1).getcId();
-		res.put("classs", cla);
-		res.put("exam_date",_lesson.getExamTime());
-		String origin;
+		res.put("classs", cla);//考试班级
+		res.put("exam_date",_lesson.getExamTime());//考试日期
+		
+		String origin;//试题来源
 		if(_lesson.getExamOrigin()==0) origin="自主命题";
 		else if(_lesson.getExamOrigin()==1) origin="试题库";
 		else origin="其它";
 		res.put("origin",origin);
+		
 		float amount=_lesson.getExamStuNum();
-		res.put("student_amount", _lesson.getExamStuNum());
-		res.put("tname", _lesson.getTeacher().gettName());
-		res.put("school", _lesson.getTeacher().gettSchoolName());
-		res.put("tposition", "讲师");
+		res.put("student_amount", _lesson.getExamStuNum());//考试人数
+		res.put("tname", _lesson.getTeacher().gettName());//教师名
+		res.put("school", _lesson.getTeacher().gettSchoolName());//学院名
+		res.put("tposition", "讲师");//教师职位
+		//各个等级人数及百分比
 		res.put("E_num",E);
 	    res.put("D_num",D);
 	    res.put("C_num",C);
@@ -97,9 +116,11 @@ public class ScoreController {
 	    res.put("C_percent",(float)(Math.round(C*100.0/amount*100))/100);
 	    res.put("B_percent",(float)(Math.round(B*100.0/amount*100))/100);
 	    res.put("A_percent",(float)(Math.round(A*100.0/amount*100))/100);
-	    
+	    //最高成绩
 	    res.put("max_score",max);
+	    //最低成绩
 	    res.put("min_score",min);
+	    //平均成绩
 	    avg=(float)(Math.round(sum/amount*100))/100;
 	    res.put("avg_score",avg);
 	    
@@ -110,7 +131,7 @@ public class ScoreController {
 			sum+=(avg-temp)*(avg-temp);
 		}
 	    sum=(float) Math.pow(sum/amount, 0.5);
-	    res.put("std", (float)(Math.round(sum*100))/100);
+	    res.put("std", (float)(Math.round(sum*100))/100);//标准差
 	    
 	    int data[]=new int[5];
 	    data[0]=A;
@@ -119,7 +140,8 @@ public class ScoreController {
 	    data[3]=D;
 	    data[4]=E;
 	    
-	    res.put("chart_data",data);	    
+	    res.put("chart_data",data);//传给折现统计图的数据
+	    //赋值给表单的数据
 	    res.put("examOrigin",_lesson.getExamOrigin());
 	    res.put("examTime",_lesson.getExamTime());
 	    res.put("examWay",_lesson.getExamWay());
@@ -129,7 +151,7 @@ public class ScoreController {
 		return res;
 	}
 	
-	@RequestMapping("score/listScore")
+	@RequestMapping("score/listScore")//获取该课程的所有学生成绩
 	public List<HashMap<String, Object>> listScore(int lessonId){
 		
 		return sco.listScore(lessonId);

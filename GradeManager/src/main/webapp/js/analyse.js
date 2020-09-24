@@ -15,13 +15,13 @@ layui.use(['laytpl','layer', 'form', 'laydate', 'element','jquery'], function ()
 		data: {"lessonId":lessonId},
 		dataType : 'JSON',
 		success: function (data) {
-			 //////////////////////////////////表1
+			 //////////////////////////////////赋值给统计表
 		    var getTpl = demo.innerHTML
 		        , view = document.getElementById('view');
 		    laytpl(getTpl).render(data, function (html) {
 		        view.innerHTML = html;
 		    });
-		    ///////////////////////////////////////////表2
+		    ///////////////////////////////////////////赋值给分析表
 		    var data2 = {
 		        "quality_analyse": data.remark1
 		        , "score_analyse": data.remark2
@@ -32,7 +32,7 @@ layui.use(['laytpl','layer', 'form', 'laydate', 'element','jquery'], function ()
 		    laytpl(getTpl2).render(data2, function (html) {
 		        view2.innerHTML = html;
 		    });
-		    ///////////////////////////
+		    ///////////////////////////Highcharts生成折线图
 		    Highcharts.chart('container', {
 		        chart: {
 					type: 'line'
@@ -72,7 +72,7 @@ layui.use(['laytpl','layer', 'form', 'laydate', 'element','jquery'], function ()
 		        , "remark3": data.remark3
 		    });
 		    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		    //监听提交
+		    //监听提交表单数据
 		    form.on('submit(formDemo)', function (data) {
 		    	$(data.field).attr("lessonId",lessonId);
 		    	console.log(data.field);
@@ -94,7 +94,7 @@ layui.use(['laytpl','layer', 'form', 'laydate', 'element','jquery'], function ()
 		}
 	});
 });
-function preview()
+function preview()//打印页面
 {
         bdhtml=window.document.body.innerHTML;//获取当前页的html代码
         sprnstr="<!-- printTableStart -->";//设置打印开始区域
