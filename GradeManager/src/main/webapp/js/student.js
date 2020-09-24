@@ -9,6 +9,13 @@ layui.use(["table","jquery","form",],function () {
     $.ajaxSettings.async=false;
     var data;
 	//挂科四门给出警告
+    $.ajax({
+        type: "get",
+        url: "/user/getSname",
+        success: function (obj) {
+        	$("#sName").text("欢迎您,"+obj+"同学")
+        }
+    });
     $.post('../student/score', function(flag) {
 		console.log(flag);
 		var count=0;

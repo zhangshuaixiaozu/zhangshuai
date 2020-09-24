@@ -11,6 +11,14 @@ layui.use(["jquery","table","element","layer"],function () {
             data = obj;
         }
     });
+    $.ajax({
+        type: "get",
+        url: "/user/getTname",
+        success: function (obj) {
+        	$("#tName").text("欢迎您,"+obj+"老师")
+        }
+    });
+    
     let newData = JSON.parse(JSON.stringify(data));
     var indexTable = table.render({
         elem: "#indexTable",

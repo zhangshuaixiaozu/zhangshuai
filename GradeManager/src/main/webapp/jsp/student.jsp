@@ -15,7 +15,17 @@
 </head>
 <body>
 	<!-- style="background: url(../layui/images/image/xuesheng.jpg)  no-repeat;  background-size:100% 100% ; background-attachment: fixed" -->
-
+	<div class="layui-layout layui-layout-admin">
+		<div class="layui-header">
+			<!-- logo -->
+			<div class="layui-logo">成绩管理系统</div>
+			<!-- 输出用戶名 -->		
+		    <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+ 			<div id="sName">欢迎您！</div>
+      </li>
+    </ul>
+    </div>		
 	<div class="layui-input-inline layui-form">
 		<select id="term" lay-filter="college" style="width: 200px;">
 			<option value="">全部</option>
