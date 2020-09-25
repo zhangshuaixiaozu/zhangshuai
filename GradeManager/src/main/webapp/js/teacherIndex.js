@@ -20,6 +20,7 @@ layui.use(["jquery","table","element","layer"],function () {
     });
     
     let newData = JSON.parse(JSON.stringify(data));
+    console.info(newData);
     var indexTable = table.render({
         elem: "#indexTable",
         autoSort: false,
@@ -31,6 +32,14 @@ layui.use(["jquery","table","element","layer"],function () {
             {field: "term", title: "学期",},
             {field: "scoreType", title: "分数类型",},
             {field: "usualProportion", title: "平时分占比",},
+            {field: "status", title: "状态", templet: function(obj){
+            	console.info(obj);
+            	if(obj.entered === 1){
+            		return "已提交";
+            	}else{
+            		return "未提交";
+            	}
+            } },
             {field: "action", title: "操作", toolbar: "#actions", width: 450},
         ]],
         data: newData
@@ -42,7 +51,11 @@ layui.use(["jquery","table","element","layer"],function () {
         console.info(event);
 
         if(event === "check"){//查看
-        	window.open(`./teacherView.html?lessonId=${data.lessonId}`);
+        	if(data.entered === 0){
+        		layer.msg("尚未提交，不能查看");
+        	}else{
+        		window.open(`./teacherView.html?lessonId=${data.lessonId}`);
+        	}
         }else if(event === "input1"){//正考录入
                 window.open(`../normalInput.html?lessonId=${data.lessonId}`);
         }else if(event === "input2"){//补考录入
